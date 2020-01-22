@@ -1,5 +1,9 @@
 package cl.tiocomegfas.orden.Interfaces;
 
+/**
+ * Interface utilizada para almacenar las constantes que se utlizaran en el hilo
+ */
+
 public interface AccionesHilo {
 
     public static final int APLICAR_METODO_BUBBLE_SORT = 1;

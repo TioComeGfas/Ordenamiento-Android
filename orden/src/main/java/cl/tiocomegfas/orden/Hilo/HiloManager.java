@@ -129,6 +129,7 @@ public class HiloManager<T extends Comparable<T>> implements Runnable, AccionesH
             }
         }catch (OrdenException o){
             if(accion == APLICAR_METODO_BUBBLE_SORT) bubbleListener.onError(o.getMessage()); //la aplicacion debe romperse
+            else if(accion == APLICAR_METODO_COUNTING_SORT) countingListener.onError(o.getMessage());
 
         }
     }
@@ -137,7 +138,14 @@ public class HiloManager<T extends Comparable<T>> implements Runnable, AccionesH
      * Este metodo lanza el hilo para ordenar
      */
     public void iniciar(){
+
+
+
         hilo.start();
+    }
+
+    public Thread obtener(){
+        return hilo;
     }
 
     /**
@@ -145,33 +153,39 @@ public class HiloManager<T extends Comparable<T>> implements Runnable, AccionesH
      * @param tipo ascendente o descente
      * @param listener El escuchado donde se comunicara con la interfaz de usuario
      */
-    public void configurarBubbleSort(int tipo,@NonNull BubbleSortListener listener){
+    public void configurarBubbleSort(int tipo,T[] arreglo,@NonNull BubbleSortListener listener){
         this.tipo = tipo;
+        this.arreglo = arreglo;
         this.bubbleListener = listener;
     }
 
-    public void configurarCountingSort(int tipo,@NonNull CountingSortListener listener){
+    public void configurarCountingSort(int tipo,T[] arreglo, @NonNull CountingSortListener listener){
         this.tipo = tipo;
+        this.arreglo = arreglo;
         this.countingListener = listener;
     }
 
-    public void configurarInsertionSort(int tipo, @NonNull InsertionSortListener listener){
+    public void configurarInsertionSort(int tipo, T[] arreglo ,@NonNull InsertionSortListener listener){
         this.tipo = tipo;
+        this.arreglo = arreglo;
         this.insertionListener = listener;
     }
 
-    public void configurarMergeSort(int tipo, @NonNull MergeSortListener listener){
+    public void configurarMergeSort(int tipo, T[] arreglo, @NonNull MergeSortListener listener){
         this.tipo = tipo;
+        this.arreglo = arreglo;
         this.mergeListener = listener;
     }
 
-    public void configurarQuickSort(int tipo, @NonNull QuickSortListener listener){
+    public void configurarQuickSort(int tipo, T[] arreglo, @NonNull QuickSortListener listener){
         this.tipo = tipo;
+        this.arreglo = arreglo;
         this.quickListener = listener;
     }
 
-    public void configurarSelectionSort(int tipo, @NonNull SelectionSortListener listener){
+    public void configurarSelectionSort(int tipo, T[] arreglo, @NonNull SelectionSortListener listener){
         this.tipo = tipo;
+        this.arreglo = arreglo;
         this.selectionListener = listener;
     }
 

@@ -7,30 +7,73 @@ import cl.tiocomegfas.orden.Interfaces.Ordenable;
 import cl.tiocomegfas.orden.Utilidad.Rango;
 import cl.tiocomegfas.orden.Utilidad.Util;
 
+/**
+ *  Esta clase se encarga de ordenar los objetos, realizando el algoritmo de Counting Sort, pero de forma generica
+ *  Solo requiere pasar el arreglo con los objetos que se desea ordenar y el tipo (ascendente y descendente)
+ *
+ *  @see cl.tiocomegfas.orden.Excepciones.CodigosErrores Interfaz que almacena todas las constantes necesarias.
+ *  @see cl.tiocomegfas.orden.Interfaces.Ordenable Interfaz para generalizar los metodos ascendente y descendente.
+ *  @see cl.tiocomegfas.orden.Interfaces.Clasificador Clase padre que es utilizada para realizar el intercambio en el arreglo.
+ *
+ *  @author tiocomegfas
+ *  @version 1.0
+ *  @since 2020
+ */
 public class CountingSort extends Clasificador implements Ordenable, CodigosErrores {
 
+    /**
+     * Utilizado para mostrar un log en la consola
+     */
     private static final String TAG = "CountingSort";
 
-
-    public static <T extends Comparable<T>> void aplicar(int tipo, T[] arreglo){
-
+    /**
+     * Metodo estatico para iniciar el proceso de ordenamiento.
+     * @param tipo  Ascendente : ordenar en forma ascendente.
+     *              Descente : ordenar en forma descendente.
+     *
+     * @param arreglo El arreglo generico a ordenar
+     * @param <T> El tipo de dato a ordenar.
+     * @throws CountingSortException Se lanza cuando existe un problema para ordenar el arreglo.
+     */
+    public static <T extends Comparable<T>> void aplicar(int tipo, T[] arreglo) throws CountingSortException{
         CountingSort countingSort = new CountingSort();
 
         if(tipo == ASCENDENTE) countingSort.ascendente(arreglo);
         else countingSort.descendente(arreglo);
     }
 
+    /**
+     * Metodo para ordenar de forma ascendente el arreglo generico.
+     * @param valores El arreglo generico con la informacion a ordenar.
+     * @param <T> El tipo de datos a ordenar.
+     * @throws CountingSortException Se lanza cuando existe un problema para ordenar el arreglo.
+     */
     @Override
     public <T extends Comparable<T>> void ascendente(T[] valores) throws CountingSortException {
         ordenar(valores,ASCENDENTE);
     }
 
+    /**
+     * Metodo para ordenar de forma descendente el arreglo generico.
+     * @param valores El arreglo generico con la informacion a ordenar.
+     * @param <T> El tipo de datos a ordenar.
+     * @throws CountingSortException Se lanza cuando existe un problema para ordenar el arreglo.
+     */
     @Override
     public <T extends Comparable<T>> void descendente(T[] valores) throws CountingSortException {
         ordenar(valores,DESCENDENTE);
     }
 
 
+    /**
+     * Metodo encargado de ordenar el arreglo con el metodo Counting Sort
+     * @param valores El arreglo generico con la informacion a ordenar.
+     * @param <T> El tipo de datos a ordenar.
+     * @throws CountingSortException Se lanza cuando el arreglo es nulo
+     *                               Se lanza cuando el arreglo es invalido
+     *                               Se lanza cuando el tipo es invalido
+     *                               Se lanza cuando el arreglo no es una instancia de Integer
+     */
     private <T extends Comparable<T>> void ordenar(T[] valores, int tipo) throws CountingSortException{
 
         //validaciones
@@ -49,24 +92,19 @@ public class CountingSort extends Clasificador implements Ordenable, CodigosErro
         int highestElement = rangeElements.obtenerAlto();
         int[] occurrences = new int[(highestElement - lowestElement) + 1];
 
-        // Iterate through the array and count how many times each value has appeared and increment by
-        // 1 every time.
         for (int i = 0; i < valores.length; i++) {
             occurrences[temp[i] - lowestElement] += 1;
         }
 
-        // This peace of code is necessary just because we only want to create one method that will
-        // sort ascending and descending, otherwise this code could be deleted.
-        int currentIndex = 0;
-        int finishIndex = 0;
-        int increment = 0;
+        int currentIndex;
+        int finishIndex;
+        int increment;
+
         if (tipo == ASCENDENTE) {
-            // asendente.
             currentIndex = 0;
             finishIndex = occurrences.length;
             increment = 1;
         } else{
-            // desendente.
             currentIndex = occurrences.length - 1;
             finishIndex = -1;
             increment = -1;
@@ -76,7 +114,6 @@ public class CountingSort extends Clasificador implements Ordenable, CodigosErro
             int nrOccurrences = occurrences[currentIndex];
 
             for (int j = 0; j < nrOccurrences; j++) {
-                // It is necessary to "+ lowestElement" to compensate when it was subtracted.
                 temp[indexToInsertElement++] = currentIndex + lowestElement;
             }
 
