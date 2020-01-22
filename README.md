@@ -1,5 +1,15 @@
 # Ordenamiento-Android
-Esta es una pequeña librería para ordenar arreglos, con tipos de datos genericos
+Esta es una pequeña librería para ordenar arreglos, con tipos de datos genericos.
+Esta pequeña libreria incluye un hilo que realiza el orden, para evitar al programador ensuciar su proyecto, dejando asi un codigo mas limpio al momento de integrar esta libreria a su proyecto.
+
+# Clases Utiles
+
++ HiloManager
++ BubbleSortListener
++ QuickSortListener
+
+
+
 
 
 # Implementacion:
