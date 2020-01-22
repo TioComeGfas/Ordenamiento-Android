@@ -1,3 +1,6 @@
+[![](https://jitpack.io/v/TioComeGfas/Ordenamiento-Android.svg)](https://jitpack.io/#TioComeGfas/Ordenamiento-Android)
+
+
 # Ordenamiento-Android
 Esta pequeña libreria incluye un hilo que realiza el orden, para evitar al programador ensuciar su proyecto, dejando asi un codigo mas limpio al momento de integrar esta libreria a su proyecto.
 
@@ -102,16 +105,16 @@ Agréguelo en su raíz build.gradle al final de los repositorios:
 
 allprojects {
    repositories {
-	   ...
-		 maven { url 'https://jitpack.io' }
-	 }
- }
+     ...
+     maven { url 'https://jitpack.io' }
+     }
+}
 
 ```
 Agregar la dependencia
 ```Gradle
 dependencies {
-    implementation 'com.github.TioComeGfas:Ordenamiento-Android:Tag'
+    implementation 'com.github.TioComeGfas:Ordenamiento-Android:1.0'
 }
 ```
 
