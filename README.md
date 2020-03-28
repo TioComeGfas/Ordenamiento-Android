@@ -102,14 +102,11 @@ Una vez tengamos configurada el Objeto y creado es escuchador nos disponemos a l
 # Gradle
 Agréguelo en su raíz build.gradle al final de los repositorios:
 ```Gradle
-
 allprojects {
    repositories {
-     ...
      maven { url 'https://jitpack.io' }
      }
 }
-
 ```
 Agregar la dependencia
 ```Gradle
