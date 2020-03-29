@@ -1,7 +1,7 @@
 [![](https://jitpack.io/v/TioComeGfas/Ordenamiento-Android.svg)](https://jitpack.io/#TioComeGfas/Ordenamiento-Android)
 
 
-# Ordenamiento-Android
+# Order
 Esta pequeña libreria incluye un hilo que realiza el orden, para evitar al programador ensuciar su proyecto, dejando asi un codigo mas limpio al momento de integrar esta libreria a su proyecto.
 
 # Clases Utiles
